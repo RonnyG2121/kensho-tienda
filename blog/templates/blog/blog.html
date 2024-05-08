@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+    {% for b in clabe_blog %}
+
+<!-- Heading -->
+<section class="page-section clearfix">
+      <div class="container">
+        <div class="intro">
+          <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{ b.imagen.url }}" alt="Imagen de muestra de {{b.titulo}}" style="width: 50%;">
+ <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+            <h2 class="section-heading mb-4">
+              <span class="section-heading-lower">{{ b.titulo }}</span>
+</h2>
+
+<p class="mb-3">
+  <span class="section-heading-upper">{{ b.contenido }}</span>
+</p>
+
+<div style="display: inline-block; text-align: left;">
+<p class="mb-3">
+  <span class="section-heading-upper">Entrada publicada por: {{ b.autor }}</span>
+</p>
+</div>
+         
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% endfor %}
+  
+<section>
+
+<div style="width: 75%; margin: auto; background-color: white; text-align: center;">
+<h3>Categorías:</h3>
+
+{% for c in clabe_blog %}
+  {% for cp in c.categorias.all %}
+    <a href="{% url 'categoria' cp.id %}" class="links_categorias">{{ cp.nombre }}</a>
+  {% endfor %}
+{% endfor %}
+
+</div>
+</section>
+{% endblock %}

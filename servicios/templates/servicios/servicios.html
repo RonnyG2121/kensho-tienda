@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block content %}
+    {% for s in clabe_servicios %}
+
+<!-- Heading -->
+<section class="page-section clearfix">
+      <div class="container">
+        <div class="intro">
+          <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{ s.imagen.url }}" alt="Imagen de muestra de {{s.titulo}}" style="width: 50%;">
+ <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+            <h2 class="section-heading mb-4">
+              <span class="section-heading-lower">{{ s.titulo }}</span>
+
+</h2>
+<p class="mb-3">
+  <span class="section-heading-upper">{{ s.descripcion }}</span>
+</p>
+         
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% endfor %}
+  
+{% endblock %}

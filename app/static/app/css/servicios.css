@@ -1,0 +1,81 @@
+/* Estilos para la lista de servicios */
+.services {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Estilos para cada servicio */
+.services li {
+  width: 300px;
+  margin: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* Estilos para la imagen de cada servicio */
+.services li img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Estilos para el contenido de cada servicio */
+.services li div {
+  padding: 20px;
+  background-color: #f8f8f8;
+}
+
+.services li h2 {
+  margin-top: 0;
+}
+
+.services li p {
+  margin-bottom: 0;
+}
+
+
+
+/* Estilos para la lista de servicios */
+.services {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Estilos para cada servicio */
+.services li {
+  width: 300px;
+  margin: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* Estilos para la imagen de cada servicio */
+.services li img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Estilos para el contenido de cada servicio */
+.services li div {
+  padding: 20px;
+  background-color: #f8f8f8;
+}
+
+.services li h2 {
+  margin-top: 0;
+}
+
+.services li p {
+  margin-bottom: 0;
+}

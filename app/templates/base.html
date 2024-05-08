@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<title>Kensho Tienda</title>
+
+    <!-- Bootstrap -->
+    {% load static %}
+    
+    <link href=" {% static 'app/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+     <!-- Fonts -->
+    
+     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet"> 
+     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+     
+
+    <!-- Styles -->
+    <link href="{% static 'app/css/gestion.css' %}" rel="stylesheet">
+</head>
+
+<body>
+<header>
+    <h1 class="site-heading text-center text-white d-none d-lg-block">
+        <span class="site-heading-lower">Kensho tienda</span>
+</h1>
+</header>
+
+
+<div style="background-color: white; text-align: right; margin-right: 100px;">
+{% if user.is_authenticated %}
+<p>¡HOLA! {{user.username}}</p>
+<a href="{% url 'logout' %}">Cerrar Sesión</a>
+{% else %}
+<a href="{% url 'login' %}">¿Ya tienes una cuenta? Iniciar Sesión</a>
+<br>
+<a href=" {% url 'authenticator' %}">¿No te as registrado? Regístrate</a>
+{% endif %}
+
+</div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav" role="navigation" aria-label="Principal">
+    <div class="container">
+      <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href='/'>Kensho Tienda</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Menú Principal">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <!-- Área de enlaces principales-->
+        
+<ul class="navbar-nav mx-auto">
+  <li class="nav-item {% if request.path == '/inicio/' %}active {% endif %} px-lg-4">
+    <a class="nav-link text-uppercase text-expanded" href="{% url 'inicio'%}" {% if request.path == '/inicio/' %} aria-current="page" {% endif %}>Inicio</a>
+  </li>
+  <li class="nav-item {% if request.path == '/servicios/' %}active {% endif %} px-lg-4">
+    <a class="nav-link text-uppercase text-expanded" href="{% url 'servicios' %}" {% if request.path == '/servicios/' %} aria-current="page" {% endif %}>Servicios</a>
+  </li>
+  <li class="nav-item {% if request.path == '/tienda/' %}active {% endif %} px-lg-4">
+    <a class="nav-link text-uppercase text-expanded" href="{% url 'tienda' %}" {% if request.path == '/tienda/' %} aria-current="page" {% endif %}>Tienda</a>
+  </li>
+  <li class="nav-item {% if request.path == '/contacto/' %}active {% endif %} px-lg-4">
+    <a class="nav-link text-uppercase text-expanded" href="{% url 'contacto' %}" {% if request.path == '/contacto/' %} aria-current="page" {% endif %}>Contacto</a>
+  </li>
+  <li class="nav-item {% if request.path|slice:":6" == '/blog/' %}active {% endif %} px-lg-4">
+    <a class="nav-link text-uppercase text-expanded" href="{% url 'blog' %}" {% if request.path == '/blog/' %} aria-current="page" {% endif %}>Blog</a>
+  </li>
+</ul>
+        
+      </div>
+    </div>
+  </nav>
+
+<!-- Contenido que cambia en la herencia -->
+{% block content %}
+
+
+{% endblock %}
+    <!-- Footer -->
+    <footer class="footer text-faded text-center py-5">
+      <div class="container">
+        <p class="m-0">
+	        <a href="#" class="link">
+	          <span class="fa-stack fa-lg">
+	            <i class="fa fa-circle fa-stack-2x"></i>
+	            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+	          </span>
+	        </a>
+	        <a href="#" class="link">
+	          <span class="fa-stack fa-lg">
+	            <i class="fa fa-circle fa-stack-2x"></i>
+	            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+	          </span>
+	        </a>
+	        <a href="#" class="link">
+	          <span class="fa-stack fa-lg">
+	            <i class="fa fa-circle fa-stack-2x"></i>
+	            <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+	          </span>
+	        </a>
+	    </p>
+        <p class="m-0 mbt">
+        	<a href="sample.html" class="link">Política de privacidad</a> ·
+        	<a href="sample.html" class="link">Aviso legal</a> ·
+        	<a href="sample.html" class="link">Cookies</a>
+		</p>
+        <p class="m-0 mbt1">&copy; Kensho Tienda {{year}}</p>
+      </div>
+	</footer>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'app/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'app/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+
+</html>
