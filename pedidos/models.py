@@ -14,7 +14,7 @@ class Pedido(models.Model):
     created_add = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
     @property
     def Total(self):
@@ -35,7 +35,7 @@ class LineaPedido(models.Model):
     created_add = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return "{} unidades de {}".format(self.cantidad, self.producto.nombre)
+        return str("{} unidades de {}".format(self.cantidad, self.producto.nombre))
 
     class Meta:
         db_table = "linea_pedidos"
