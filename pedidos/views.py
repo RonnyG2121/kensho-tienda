@@ -1,3 +1,5 @@
+import stripe
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
@@ -6,9 +8,15 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
 from carrito.carrito import Carrito
-from pedidos.models import LineaPedido, Pedido, Producto
+from pedidos.models import LineaPedido, Pedido
+from tienda.models import Producto
 
 # Create your views here.
+
+
+def pagar():
+    key = stripe.api_key = settings.STRIPE_SECRET_KEY
+    # print(key)
 
 
 def Enviar_mail(*args, **kwargs):
@@ -35,9 +43,9 @@ def Procesar_pedido(request):
             user=request.user,
             pedido=objeto_pedido))
     LineaPedido.objects.bulk_create(lineas_pedido)
-    Enviar_mail(objeto_pedido=objeto_pedido, lineas_pedido=lineas_pedido,
-                nombre_usuario=request.user.username, email_usuario=request.user.email)
+    """Enviar_mail(objeto_pedido=objeto_pedido, lineas_pedido=lineas_pedido, nombre_usuario=request.user.username, email_usuario=request.user.email)"""
     messages.success(
         request, '¡Exito! Su pedido se efectuó satisfactoriamente')
     carro.Limpiar_carro()
+    pagar()
     return redirect('tienda')

@@ -11,7 +11,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+
+from decouple import config
 from django.contrib.messages import constants as mensajes_const
+
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -151,7 +156,7 @@ EMAIL_HOST_PASSWORD = 'tupassword'
 # Cargando bootstrap y el crispy_forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-#Cargando las tags de mensajes para la página
+# Cargando las tags de mensajes para la página
 MESSAGE_TAGS = {
     mensajes_const.DEBUG: DEBUG,
     mensajes_const.INFO: '',
