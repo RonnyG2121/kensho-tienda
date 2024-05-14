@@ -15,6 +15,8 @@ from pathlib import Path
 from decouple import config
 from django.contrib.messages import constants as mensajes_const
 
+
+STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
 
 
