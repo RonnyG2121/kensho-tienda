@@ -11,12 +11,33 @@ from carrito.carrito import Carrito
 from pedidos.models import LineaPedido, Pedido
 from tienda.models import Producto
 
+from .forms import PaymentForm
+
 # Create your views here.
 
 
-def pagar():
-    key = stripe.api_key = settings.STRIPE_SECRET_KEY
-    # print(key)
+def pagar(request):
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    if request.method == "POST":
+        formulario_pago = PaymentForm(request.POST)
+        if formulario_pago.is_valid():
+            token = request.POST['stripeToken']
+
+            try:
+                charge_customer = stripe.Charge.create(
+                    amount=1000,
+                    currency='eur',
+                    description='Ejemplo de carga',
+                    source=token)
+
+                return redirect('tienda')
+
+            except stripe.error.CardError as e:
+                error_message = e.error.message
+                return render(request, "pedidos/form_pago.html", {"formulario_pago": formulario_pago, "error_message": error_message})
+    else:
+        formulario_pago = PaymentForm()
+        return render(request, "pedidos/form_pago.html", {'formulario_pago': formulario_pago})
 
 
 def Enviar_mail(*args, **kwargs):
@@ -47,5 +68,5 @@ def Procesar_pedido(request):
     messages.success(
         request, '¡Exito! Su pedido se efectuó satisfactoriamente')
     carro.Limpiar_carro()
-    pagar()
+    pagar(request)
     return redirect('tienda')

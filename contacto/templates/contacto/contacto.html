@@ -1,29 +1,18 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>{% extends "base.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% block content %}
 
 <div class="form_contacto">
     <form action="" method="post">
-    {% csrf_token %}
-    {% if 'valido' in request.GET %}
-    <p style="color: white;">El mensaje se envió correctamente</p>
-    {% endif %}
-<table >
-    {{mi_form.as_table}}
-    </table>
-    <input class="boton" type="submit" value="Enviar">
+        {% csrf_token %}
+        {% if 'valido' in request.GET %}
+        <p style="color: white;">El mensaje se envió correctamente</p>
+        {% endif %}
+        <table>
+            {{mi_form.as_table}}
+        </table>
+        <input class="boton" type="submit" value="Enviar">
     </form>
-    </div>
-    
+</div>
+
 {% endblock %}
